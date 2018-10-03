@@ -14,8 +14,6 @@ namespace eventsAPItest
 {
     class Program
     {
-
-
         public class Category
         {
             public int id { get; set; }
@@ -50,26 +48,33 @@ namespace eventsAPItest
             public int org_id { get; set; }
             public List<Occurrence> occurrences { get; set; }
         }
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             // references 
             //  https://msdn.microsoft.com/en-us/library/system.net.http.httpclient(v=vs.118).aspx
             //** http://www.tutorialsteacher.com/webapi/consuming-web-api-in-dotnet-using-httpclient
-            // https://forums.asp.net/t/2081327.aspx?Get+HttpClient+with+parameters
+            //** https://forums.asp.net/t/2081327.aspx?Get+HttpClient+with+parameters
             // https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client
+
+            if (args.Length == 0)
+            {
+                System.Console.WriteLine("Please enter api key as the argument.");
+                return 1;
+            }
+            string apikey = args[0];
 
             try
             {
                 string HostUri = "https://orgsync.com/api/v2/";
-                string apiKey = "XdUBCwxeA-doeAGhrw1zpg";
+          
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(HostUri);
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    //string serviceUrl = string.Format(OrgInfoServiceUrl, ConfigurationCommon.OrgSyncApiKey, id);
+                    string serviceUrl = string.Format("events/?key={0}", apikey);
 
                     // HTTP Get
-                     var responseTask = client.GetAsync("events/?key=XdUBCwxeA-doeAGhrw1zpg");
+                    var responseTask = client.GetAsync(serviceUrl); 
 
                     responseTask.Wait();
 
@@ -93,10 +98,12 @@ namespace eventsAPItest
                 //An error occurred.  
                 if (ex.Source != null)
                     Console.WriteLine("IOException source: {0} \n Error: {1}", ex.Source, ex.Message);
+                return 2;
             }
            
             Console.WriteLine("Press any key to end");
             Console.ReadLine();
+            return 0;
 
         }
     }
