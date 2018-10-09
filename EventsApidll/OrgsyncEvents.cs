@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net; // needed for HttpWebRequest
+//using System.Net; // needed for HttpWebRequest
 using System.Security.Cryptography;      //for encoding-add system.security.dll to references
 using System.Web.Script.Serialization;  // need for Jason; add system.Web.Extensions in references
 using System.Net.Http;                  // httpclient class

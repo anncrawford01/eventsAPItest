@@ -59,11 +59,19 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SqlStoredProcedure1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EventsApidll\EventsApidll.csproj">
+      <Name>EventsApidll</Name>
+      <Project>{3e7a06a4-237f-4b8a-9925-561b35f22f1b}</Project>
+      <Private>True</Private>
+      <IsModelAware>True</IsModelAware>
+      <GenerateSqlClrDdl>True</GenerateSqlClrDdl>
+    </ProjectReference>
   </ItemGroup>
 </Project>

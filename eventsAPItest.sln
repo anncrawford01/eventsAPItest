@@ -5,10 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eventsAPItest", "eventsAPItest\eventsAPItest.csproj", "{B31ECA14-FC14-48E4-9F5B-3C58AEBF0D1A}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CLRwithAPI", "CLRwithAPI\CLRwithAPI.sqlproj", "{1E28D2C0-9C6C-4B04-AECB-9974D2917555}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsApidll", "EventsApidll\EventsApidll.csproj", "{3E7A06A4-237F-4B8A-9925-561B35F22F1B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,16 +15,6 @@ Global
 		{B31ECA14-FC14-48E4-9F5B-3C58AEBF0D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B31ECA14-FC14-48E4-9F5B-3C58AEBF0D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B31ECA14-FC14-48E4-9F5B-3C58AEBF0D1A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1E28D2C0-9C6C-4B04-AECB-9974D2917555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1E28D2C0-9C6C-4B04-AECB-9974D2917555}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1E28D2C0-9C6C-4B04-AECB-9974D2917555}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{1E28D2C0-9C6C-4B04-AECB-9974D2917555}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1E28D2C0-9C6C-4B04-AECB-9974D2917555}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1E28D2C0-9C6C-4B04-AECB-9974D2917555}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{3E7A06A4-237F-4B8A-9925-561B35F22F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E7A06A4-237F-4B8A-9925-561B35F22F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E7A06A4-237F-4B8A-9925-561B35F22F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E7A06A4-237F-4B8A-9925-561B35F22F1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

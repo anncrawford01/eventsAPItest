@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EventsApidll.OrgsynEvents">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="EventsApidll.OrgsynEvents.Category" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OrgsyncEvents.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="EventsApidll.OrgsynEvents.UmbrellaCategory" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OrgsyncEvents.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="EventsApidll.OrgsynEvents.Occurrence" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OrgsyncEvents.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="EventsApidll.OrgsynEvents.RootObject" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>OrgsyncEvents.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>OrgsyncEvents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
