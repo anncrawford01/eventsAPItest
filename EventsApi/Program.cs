@@ -60,23 +60,53 @@ namespace HttpClientSample
         public Category category { get; set; }
     }
     // timesheet
+    public class AccountTimesheet
+    {
+        public int id { get; set; }
+        public string first_name { get; set; }
+        public string last_name { get; set; }
+    }
 
-    
+    public class EventTimesheet
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+    }
+
+    public class OrgTimesheet
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+    }
+
+    public class Timesheet
+    {
+        public int id { get; set; }
+        public string description { get; set; }
+        public string start_date { get; set; }
+        public object end_date { get; set; }
+        public double? hours { get; set; }
+        public string status { get; set; }
+        public string attendance_status { get; set; }
+        public object alternate_org_name { get; set; }
+        public bool requirements_met { get; set; }
+        public bool service { get; set; }
+        public AccountTimesheet account { get; set; }
+        public EventTimesheet @event { get; set; }
+        public OrgTimesheet org { get; set; }
+    }
+
     class Program
     {
         static HttpClient client = new HttpClient();
 
-        static void Show(IEnumerable<Event> evnts)
-        {
-            foreach (var evnt in evnts)
-            {
-                Console.WriteLine($"Name: {evnt.name}\tevent id:{evnt.id}");
-            }        
-        }
-           static async Task<IEnumerable<Event>> GetEventAsync(string path)
+
+        // --- Gets 
+        //Event
+        static async Task<ICollection<Event>> GetEventAsync(string path)
         {
             // Event evnt = null;
-            IEnumerable<Event> evnt = null;
+            ICollection<Event> evnt = null;
             HttpResponseMessage response = await client.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
@@ -85,19 +115,11 @@ namespace HttpClientSample
             return evnt;
         }
 
-        static void Show(IEnumerable<Organization> orgs)
-        {
-            foreach (var org in orgs)
-            {
-                Console.WriteLine($"Org NameL: {org.long_name}\torig id:{org.id}"+
-                    $"\tOrg NameS: { org.short_name}\tOrg Cat:{ org.category.name}");
-            }
-        }
-
-        static async Task<IEnumerable<Organization>> GetOrganizationAsync(string path)
+        //Organization
+        static async Task<ICollection<Organization>> GetOrganizationAsync(string path)
         {
 
-            IEnumerable<Organization> orgs = null;
+            ICollection<Organization> orgs = null;
             HttpResponseMessage response = await client.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
@@ -106,6 +128,51 @@ namespace HttpClientSample
             return orgs;
         }
 
+        //Timesheet
+        static async Task<ICollection<Timesheet>> GetTimesheetAsync(string path)
+        {
+            ICollection<Timesheet> timesheets = null;
+            HttpResponseMessage response = await client.GetAsync(path);
+            if (response.IsSuccessStatusCode)
+            {
+                timesheets = await response.Content.ReadAsAsync<Timesheet[]>();
+            }
+            return timesheets;
+        }
+
+        // --- Show ---
+        // Event
+        static void Show(ICollection<Event> evnts)
+        {
+            foreach (var evnt in evnts)
+            {
+                Console.WriteLine($"Name: {evnt.name}\tevent id:{evnt.id}");
+                foreach (Occurrence occur in evnt.occurrences)
+                {
+                    Console.WriteLine(occur.is_all_day ? "All Day" : $"Starts: {occur.starts_at}\tEnds at: {occur.ends_at}");
+                }
+            }
+        }
+        // Organization
+        static void Show(ICollection<Organization> orgs)
+        {
+            foreach (var org in orgs)
+            {
+                Console.WriteLine($"Org NameL: {org.long_name}\torig id:{org.id}"+
+                    $"\tOrg NameS: { org.short_name}\tOrg Cat:{ org.category.name}");
+            }
+        }
+        // Timesheet
+        static void Show(ICollection<Timesheet> timesheets)
+        {
+            string cnt = timesheets.Count.ToString();
+            Console.WriteLine("Number of timesheets: {0}", cnt);
+            foreach (var timesheet in timesheets)
+            {
+                Console.WriteLine($"Timesheet Org: {timesheet.org.name}\tTimesheet Event: {timesheet.@event}" +
+                    $"\tTimesheet Account id: {timesheet.account.id}\tHours:{ timesheet.hours}");
+            }
+        }
 
         static int Main(string[] args)
         {
@@ -128,19 +195,24 @@ namespace HttpClientSample
                 new MediaTypeWithQualityHeaderValue("application/json"));
             string serviceUrlEvent = string.Format("events/?key={0}", apikey);
             string serviceUrlOrg = string.Format("orgs/?key={0}", apikey);
+            string serviceUrlTimesheet = string.Format("timesheets/?key={0}", apikey);
 
             try
             {
-                IEnumerable<Event> evnt = null;
+                ICollection<Event> evnt = null;
                 // Get events
                 evnt = await GetEventAsync(serviceUrlEvent);
-               // Show(evnt);
+                //   Show(evnt);
 
                 // organizations
-                IEnumerable<Organization> org = null;
+                ICollection<Organization> org = null;
                 // Get orgs
                 org = await GetOrganizationAsync(serviceUrlOrg);
-                Show(org);
+                //  Show(org);
+
+                ICollection<Timesheet> timesheet = null;
+                timesheet = await GetTimesheetAsync(serviceUrlTimesheet);
+                Show(timesheet);
             }
             catch (Exception e)
             {
